@@ -1,0 +1,26 @@
+.box {
+  height: 400px;
+  padding: 20px;
+  color: #fff;
+  background: deepskyblue;
+}
+
+.margin-top-80 {
+  margin-top: 80px;
+}
+footer {
+  background-color: #222930;
+  border-top-style: solid;
+  border-top-width: 5px;
+  border-top-color: #f04b4c;
+  color: white;
+  min-height: 60px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 15px;
+  }

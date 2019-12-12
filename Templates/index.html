@@ -1,45 +1,113 @@
 <!DOCTYPE html>
 <html lang='en'>
-    <head>
-        <meta charset="UTF-8">
-        <meta name='viewpoint' content='width=device-width, initial-scale=1.0'>
-        <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-        <title>Mission to Mars</title>
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-    </head>
 
-    <body>
-        <div class='container'>
-            <div class='jumbotron text-center'>
-                <h1>Mission to Mars</h1>
-                <p><a class='btn btn-primary btn-lg' href='/scrape' role='button'>Scrape new data</a></p>
-            </div>
-            <!-- Latest Mars News -->
-            <h2>Latest Mars News</h2>
-            <h3>NASA's Briefcase-Size MarCO Satellite Picks Up Honors</h3>
-            <p> The twin spacecraft, the first of their kind to fly into deep space, earn a Laureate from Aviation Week & Space Technology.</p>
-            <!-- Features Mars Image -->
-            <h2>Featured Mars Image</h2>
-            <img src="https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA08003_ip.jpg" alt="Featured Mars Image" width="600" height="600">
-            <!-- Current Weather on Mars -->
-            <h3>Current Weather on Mars</h3>
-            <p>InSight sol 366 (2019-12-07) low -98.9ºC (-146.1ºF) high -20.4ºC (-4.8ºF)
-                winds from the SSE at 5.7 m/s (12.6 mph) gusting to 20.4 m/s (45.5 mph)
-                pressure at 6.60 hPa</p>
-            <!-- Mars Facts -->
-            <h3>Mars Facts</h3>
-            <!-- Mars Hemispheres -->
-            <h2>Mars Hemispheres</h2>
-            <img src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg" Cerberus Hemisphere Enhanced width="400" height="400">
-            <img src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg" alt="Schiaparelli Hemisphere Enhanced" width="400" height="400">
-            <img src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg" alt="Syrtis Major Hemisphere Enhanced" width="400" height="400">
-            <img src="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg" alt="Valles Marineris Hemisphere Enhanced" width="400" height="400">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewpoint' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>Mission to Mars</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 
-            <a href="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg" id="logo">Cerberus Hemisphere Enhanced</a>
-            <a href="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/schiaparelli_enhanced.tif/full.jpg" id="logo">Schiaparelli Hemisphere Enhanced</a>
-            <a href="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/syrtis_major_enhanced.tif/full.jpg" id="logo">Syrtis Major Hemisphere Enhanced</a>
-            <a href="http://astropedia.astrogeology.usgs.gov/download/Mars/Viking/valles_marineris_enhanced.tif/full.jpg" id="logo">Valles Marineris Hemisphere Enhanced</a>
+</head>
 
+<body>
+    <div class='container'>
+        <div class='jumbotron text-center'>
+            <h1>Mission to Mars</h1>
+            <p><a class='btn btn-primary btn-lg' href='/scrape' role='button'>Scrape new data</a></p>
         </div>
-    </body>
+
+
+        <!-- Latest Mars News -->
+        <h1>Latest Mars News</h1>
+        {% for listing in listings %}
+        <h2>{{listing.news}} </h2>
+        {% endfor %}
+
+        {% for listing1 in listings1 %}
+        <p> {{listing1.text}}. </p>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <div class="box" style="padding-bottom: 20px;">
+                    <h2 class="title">Featured Mars Image</h2>
+                    <hr>
+                    {% for listing2 in listings2 %}
+                    <img src="{{listing2.url}}" hwidth=500px height=500px>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12">
+                <div class="box">
+                    <div class="row" style="padding-bottom: 30px;">
+                        <br>
+                        <br>
+                        <br>
+
+                        <h3>Current Weather on Mars</h3>
+                        {% for listing3 in listings3 %}
+                        <p>{{listing3.weather}}</p>
+                        {% endfor %}
+                        <br>
+                        <h4>Mars Fact</h4>
+                        <table border="1">
+                            <tr>
+                                <th>Description</th>
+                                <th>Fact</th>
+                            </tr>
+
+                            {% for listing4 in listings4 %}
+                            <tr>
+                                <td>{{listing4.description}} </td>
+                                <td>{{listing4.value}} </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class='jumbotron text-center'>
+            <h2> Mars Hemispheres</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {% for listing5 in listings5 %}
+
+                <div class="col-6 col-sm-4">
+                    <a href="{{listing5.img_url}}">
+                        <img src="{{listing5.img_url}}" width=450px height=450px>
+                    </a>
+                    <h3>{{listing5.title}} </h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="box" style="padding-bottom: 20px;">
+                    {% for listing5 in listings5 %}
+                    <a href="{{listing5.img_url}}">
+                        <img src="{{listing5.img_url}}" width=500px height=500px>
+                    </a>
+                    <h3>{{listing5.title}} </h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div> -->
+    </div>
+</body>
+<!-- Footer -->
+<footer>
+    <div class="footer">&copy; Copyright Peter Shang 2019. All Rights Reserved.</div>
+</footer>
+
 </html>
